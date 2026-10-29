@@ -7,6 +7,7 @@ draw();
 if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){setInterval(function(){var i=Math.floor(Math.random()*data.length);var v=data[i][3]+Math.round(Math.random()*4-2);data[i][3]=Math.max(78,Math.min(98,v));draw()},2200)}
 }
 var cf=document.getElementById("cf");
+if(cf&&/[?&]sent=1/.test(location.search)){var fm0=document.getElementById("fm");if(fm0)fm0.textContent="Thank you. We received your request and will reply soon."}
 if(cf){cf.addEventListener("submit",function(e){e.preventDefault();var m=document.getElementById("fm"),f=cf.elements,b=cf.querySelector("button");
 if(!f.name.value.trim()||!/^\S+@\S+\.\S+$/.test(f.email.value)){m.textContent="Enter your name and a valid email so we can reply.";return}
 if(f.website.value){m.textContent="Thank you. We received your request and will reply soon.";cf.reset();return}
@@ -14,7 +15,11 @@ b.disabled=true;m.textContent="Sending...";
 var fd=new FormData(cf);fd.delete("website");fd.set("replyto",f.email.value);fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Accept":"application/json"},body:fd}).then(function(r){return r.text().then(function(t){try{return JSON.parse(t)}catch(x){return {ok:false,error:"Server error (HTTP "+r.status+")."}}})}).then(function(d){
 if(d&&(d.ok||d.success)){m.textContent="Thank you. We received your request and will reply soon.";cf.reset()}
 else{m.textContent=((d&&(d.error||d.message))||"We could not send your request.")+" You can also email sales@celvesta.com."}
-}).catch(function(){m.textContent="We could not reach the server. Please email sales@celvesta.com."}).then(function(){b.disabled=false})})}
+}).catch(function(){
+/* fallback: classic form post, works when the browser or network blocks the background request */
+m.textContent="Sending...";var r=document.createElement("input");r.type="hidden";r.name="redirect";r.value=location.origin+"/contact?sent=1";cf.appendChild(r);
+var w=f.website;if(w&&w.parentNode)w.parentNode.removeChild(w);
+cf.method="POST";cf.action="https://api.web3forms.com/submit";HTMLFormElement.prototype.submit.call(cf);return "fallback"}).then(function(){b.disabled=false})})}
 var mb=document.querySelector(".menu-btn"),hd=document.querySelector("header");
 if(mb&&hd){
 var closeMenu=function(){hd.classList.remove("open");mb.setAttribute("aria-expanded","false")};

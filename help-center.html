@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Help Center | Celvesta hosted softswitch setup guides</title>
+<meta name="description" content="Step-by-step guides for your Celvesta hosted softswitch: logging in, connecting customers and vendors, routing and rates, and reading CDRs and reports.">
+<link rel="canonical" href="https://celvesta.com/help-center">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Celvesta">
+<meta property="og:title" content="Help Center | Celvesta hosted softswitch setup guides">
+<meta property="og:description" content="Step-by-step guides for your Celvesta hosted softswitch: logging in, connecting customers and vendors, routing and rates, and reading CDRs and reports.">
+<meta property="og:url" content="https://celvesta.com/help-center">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=9">
+</head>
+<body>
+<header><div class="wrap nav"><a class="logo" href="/"><i></i>Celvesta</a><ul id="nav-links"><li><a href="/">Home</a></li><li><a href="/#features">Features</a></li><li><a href="/plans">Plans</a></li><li><a href="/help-center" aria-current="page">Help Center</a></li><li><a href="/faq">FAQ</a></li><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li></ul><a class="btn" href="/contact">Request a demo</a><button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button></div></header>
+<main id="top">
+
+<div class="hero hc-hero"><div class="wrap hc">
+<span class="eyebrow">Softswitch setup guides</span>
+<h1>Help Center</h1>
+<p class="lead">Step-by-step guides for running your Celvesta hosted switch: logging in, connecting customers and vendors, setting up routes and rates, and reading your call reports.</p>
+</div></div>
+
+<nav class="hc-bar" aria-label="Help Center sections"><div class="wrap hc">
+<a href="#start">Getting started</a>
+<a href="#traffic">Connecting traffic</a>
+<a href="#routing">Routing &amp; rates</a>
+<a href="#reports">Reports &amp; CDRs</a>
+<a href="#glossary">Glossary</a>
+</div></nav>
+
+<!-- PART 1: GETTING STARTED -->
+<section class="hc-sec" id="start"><div class="wrap hc">
+<span class="eyebrow">Part 1</span>
+<h2>Getting started</h2>
+<p class="hc-lead">Your Celvesta switch comes with two web panels. You manage everything in the Admin panel. Your own customers use the Customer portal to check their balance and calls.</p>
+
+<div class="hc-cards">
+<div class="hc-card"><h3>Admin panel</h3><p>For you, the switch owner. Set up customers, vendors, gateways, routes, rates and payments, and see all traffic.</p></div>
+<div class="hc-card"><h3>Customer portal</h3><p>For your customers. They see their own balance, call records, active calls and statistics. They cannot change your settings.</p></div>
+</div>
+
+<ol class="hc-steps">
+<li>
+<h3>Log in to the Admin panel</h3>
+<p>Open the Admin panel address from your Celvesta welcome email and sign in with the username and password we sent you.</p>
+</li>
+<li>
+<h3>Change your password</h3>
+<p>Go to <span class="hc-path">System → Admin Users</span>, open your user, click <b>Edit</b>, set a new password and save. Use a long password that you don't use anywhere else.</p>
+<p>If other staff need access, create a separate user for each person here instead of sharing one login.</p>
+</li>
+<li>
+<h3>Look at the Dashboard</h3>
+<p>The Dashboard is the first page after login. It shows your current traffic and recent activity, so you can check at a glance that calls are flowing.</p>
+</li>
+<li>
+<h3>Know your plan limits</h3>
+<p>Each Celvesta plan runs on its own server, with a set number of concurrent calls (CC) and calls per second (CPS):</p>
+<div class="hc-tbl"><table class="hc-fields">
+<tr><th>Starter</th><td>Up to 200 CC · 20 CPS</td></tr>
+<tr><th>Business</th><td>Up to 500 CC · 50 CPS</td></tr>
+<tr><th>Carrier</th><td>1,000+ CC · custom</td></tr>
+</table></div>
+<p>When traffic goes above your plan limit, the extra calls are rejected. If you are close to the limit often, <a href="/contact">contact Celvesta</a> to move to a bigger plan. See all <a href="/plans">plans and prices</a>.</p>
+</li>
+<li>
+<h3>Give a customer portal access</h3>
+<p>Go to <span class="hc-path">System → Customer Portal Logins</span> and click <b>New</b>.</p>
+<div class="hc-tbl"><table class="hc-fields">
+<tr><th>Customer</th><td>The customer this login belongs to.</td></tr>
+<tr><th>Accounts</th><td>Which of their accounts they can see. Leave empty to show all of their accounts.</td></tr>
+<tr><th>Login / Password</th><td>What the customer types on the portal login page.</td></tr>
+<tr><th>Allowed IPs</th><td>Optional. Only these IP addresses can log in. Separate several with commas.</td></tr>
+</table></div>
+<p>Send the customer the portal address together with their login. You need to create the customer first (see <a href="#traffic">Part 2</a>).</p>
+</li>
+</ol>
+</div></section>
+
+<!-- PART 2: CONNECTING TRAFFIC -->
+<section class="hc-sec" id="traffic"><div class="wrap hc">
+<span class="eyebrow">Part 2</span>
+<h2>Connecting traffic</h2>
+<p class="hc-lead">Every call comes in from a customer, passes through your switch and goes out to a vendor. Before you can route calls, you create both sides: the company, its billing account, and its SIP gateway. Do these steps in order.</p>
+
+<div class="hc-flow" role="img" aria-label="Call flow: customer gateway to your Celvesta switch to vendor gateway">
+<span class="box">Customer gateway</span><span class="arr" aria-hidden="true">→</span>
+<span class="box mid">Your Celvesta switch</span><span class="arr" aria-hidden="true">→</span>
+<span class="box">Vendor gateway</span>
+</div>
+
+<ol class="hc-steps">
+<li>
+<h3>Create the companies</h3>
+<p>Go to <span class="hc-path">Billing → Contractors</span> and click <b>New</b>. Create one contractor for each company you work with.</p>
+<ul class="hc-list">
+<li>For a company that <b>sends</b> you calls, tick <b>Customer</b>.</li>
+<li>For a company you <b>send</b> calls to, tick <b>Vendor</b>.</li>
+<li>Make sure <b>Enabled</b> is ticked. A company can be both customer and vendor.</li>
+</ul>
+</li>
+<li>
+<h3>Create a billing account for each company</h3>
+<p>Go to <span class="hc-path">Billing → Accounts</span> and click <b>New</b>. Choose the contractor and give the account a name. A new account always starts at a balance of zero.</p>
+<div class="hc-tbl"><table class="hc-fields">
+<tr><th>Min balance</th><td>For customers. If the balance falls below this, their calls are blocked. Use 0 for prepaid customers.</td></tr>
+<tr><th>Max balance</th><td>For vendors. Set it higher than the current balance, for example 100. If the balance goes above it, the vendor's routes stop being used.</td></tr>
+<tr><th>Origination capacity</th><td>Optional. Most calls this customer can send at the same time.</td></tr>
+<tr><th>Termination capacity</th><td>Optional. Most calls you can send to this vendor at the same time.</td></tr>
+</table></div>
+<div class="hc-note warn"><strong>Common mistake:</strong> a vendor account with Max balance left at 0. The vendor's routes will not be used and calls fail with no route.</div>
+</li>
+<li>
+<h3>Add the customer's gateway</h3>
+<p>Go to <span class="hc-path">Equipment → Gateways</span> and click <b>New</b>.</p>
+<div class="hc-tbl"><table class="hc-fields">
+<tr><th>Contractor</th><td>The customer company.</td></tr>
+<tr><th>Enabled</th><td>On.</td></tr>
+<tr><th>Allow origination</th><td>On. This gateway sends calls to you.</td></tr>
+<tr><th>Allow termination</th><td>Off.</td></tr>
+</table></div>
+</li>
+<li>
+<h3>Add the vendor's gateway</h3>
+<p>Go to <span class="hc-path">Equipment → Gateways</span> and click <b>New</b> again.</p>
+<div class="hc-tbl"><table class="hc-fields">
+<tr><th>Contractor</th><td>The vendor company.</td></tr>
+<tr><th>Enabled</th><td>On.</td></tr>
+<tr><th>Allow origination</th><td>Off.</td></tr>
+<tr><th>Allow termination</th><td>On. You send calls to this gateway.</td></tr>
+<tr><th>Host / Port</th><td>The vendor's SIP IP address and port, as given by your vendor.</td></tr>
+</table></div>
+<p>If your vendor gave you a tech prefix, add it in the gateway's number settings so it is put in front of every number you send.</p>
+</li>
+<li>
+<h3>Exchange IPs with both sides</h3>
+<p>Send your switch's SIP IP address to your customer (they send calls to it) and to your vendor (they need to whitelist it). The customer's IP address is entered in <a href="#routing">Part 3</a>, step 6.</p>
+</li>
+</ol>
+</div></section>
+
+<!-- PART 3: ROUTING & RATES -->
+<section class="hc-sec" id="routing"><div class="wrap hc">
+<span class="eyebrow">Part 3</span>
+<h2>Routing &amp; rates</h2>
+<p class="hc-lead">Routing decides which vendor gets each call and what you pay them. Rates decide what you charge your customer. Both match calls by number prefix, such as 1 for USA or 44 for the UK. The longest matching prefix wins.</p>
+
+<ol class="hc-steps">
+<li>
+<h3>Create a routing group</h3>
+<p>Under the <span class="hc-path">Routing</span> menu, open <b>Routing Groups</b> and create one, for example <i>Wholesale routes</i>. A routing group is a folder that holds your routes.</p>
+</li>
+<li>
+<h3>Create a routing plan</h3>
+<p>Go to <span class="hc-path">Routing → Routing Plans</span> and click <b>New</b>. Give it a name, choose the routing group from step 1, and pick a sorting method. <b>LCR</b> sends each call to the cheapest vendor first, then tries the next one if it fails.</p>
+</li>
+<li>
+<h3>Add routes (dialpeers)</h3>
+<p>A dialpeer is one route: “send calls starting with this prefix to this vendor, at this cost.” Go to <span class="hc-path">Routing → Dialpeers</span> and click <b>New</b>.</p>
+<div class="hc-tbl"><table class="hc-fields">
+<tr><th>Prefix</th><td>The numbers this route covers, for example <code>1</code> or <code>44</code>. Enter several prefixes separated by commas to create one dialpeer for each.</td></tr>
+<tr><th>Routing group</th><td>The group from step 1.</td></tr>
+<tr><th>Vendor / Account / Gateway</th><td>The vendor, their account and their gateway from Part 2.</td></tr>
+<tr><th>Initial rate</th><td>Your cost per minute for the first billing interval.</td></tr>
+<tr><th>Next rate</th><td>Your cost per minute after that.</td></tr>
+</table></div>
+<p>Add a dialpeer from a second vendor on the same prefix to get a backup route.</p>
+</li>
+<li>
+<h3>Create a rateplan</h3>
+<p>Create a <b>Rate Group</b> first, then go to <span class="hc-path">Routing → Rateplans</span>, click <b>New</b>, name it (for example <i>Standard</i>) and add the rate group. Use different rateplans when different customers pay different prices.</p>
+</li>
+<li>
+<h3>Add your selling prices (destinations)</h3>
+<p>Go to <span class="hc-path">Routing → Destinations</span> and click <b>New</b>. Enter the prefix, choose the rate group, and set the <b>Initial rate</b> and <b>Next rate</b> you charge per minute. Celvesta bills to 4 decimal places.</p>
+<div class="hc-note"><strong>Example.</strong> You pay your vendor 2.0000 for the first interval and 1.0000 per minute after. You charge your customer 3.0000 and 1.5000. For a 10-minute call:
+<div class="hc-calc">Customer pays: 3 + 9 × 1.5 = 16.5<br>You pay vendor: 2 + 9 × 1.0 = 11.0<br>Your profit: 5.5</div></div>
+</li>
+<li>
+<h3>Link everything with Customers Auth</h3>
+<p>Customers Auth is how the switch recognises a customer's call by its IP address. Go to <span class="hc-path">Routing → Customers Auths</span> and click <b>New</b>.</p>
+<div class="hc-tbl"><table class="hc-fields">
+<tr><th>Customer / Account / Gateway</th><td>The customer, their account and their gateway from Part 2.</td></tr>
+<tr><th>Rateplan</th><td>The rateplan from step 4.</td></tr>
+<tr><th>Routing plan</th><td>The routing plan from step 2.</td></tr>
+<tr><th>IP</th><td>The customer's IP address the calls come from.</td></tr>
+</table></div>
+<div class="hc-note warn"><strong>Calls rejected with disconnect code 110?</strong> The switch could not match the call to a customer. Check the IP address in Customers Auth, and that the customer and account are enabled.</div>
+</li>
+<li>
+<h3>Add balance to the customer</h3>
+<p>Go to <span class="hc-path">Billing → Payments</span>, click <b>New</b>, choose the customer's account and enter the amount. The balance must be above the account's Min balance, or calls are blocked.</p>
+</li>
+<li>
+<h3>Test before going live</h3>
+<p>Go to <span class="hc-path">Routing → Routing Simulation</span>. Enter the customer's IP address, a port (for example 5060), a caller number and a destination number, then click <b>Simulate routing</b>. The result shows which route and price would be used, with a full log underneath. No real call is made.</p>
+</li>
+</ol>
+</div></section>
+
+<!-- PART 4: REPORTS -->
+<section class="hc-sec" id="reports"><div class="wrap hc">
+<span class="eyebrow">Part 4</span>
+<h2>Reports &amp; CDRs</h2>
+<p class="hc-lead">Every call creates a call detail record (CDR) with its time, numbers, duration, price and result. Use these pages to check quality, solve disputes and bill your customers.</p>
+
+<div class="hc-cards">
+<div class="hc-card"><h3>Call records</h3><span class="hc-path">CDR → CDR History</span><p>Search calls by date, customer, vendor or number. Open a call to see why it ended.</p></div>
+<div class="hc-card"><h3>Live calls</h3><span class="hc-path">Realtime Data → Active Calls</span><p>See calls in progress right now and compare them with your plan's CC limit.</p></div>
+<div class="hc-card"><h3>Customer traffic</h3><span class="hc-path">Reports → Customer Traffic</span><p>Minutes, revenue, ASR and ACD for each customer over a time range.</p></div>
+<div class="hc-card"><h3>Vendor traffic</h3><span class="hc-path">Reports → Vendor Traffic</span><p>Minutes, cost, ASR and ACD for each vendor. Use it to spot bad routes.</p></div>
+<div class="hc-card"><h3>Export CDRs</h3><span class="hc-path">CDR → CDR Export</span><p>Create a file of call records for a customer or date range to share or reconcile.</p></div>
+<div class="hc-card"><h3>Unknown IPs</h3><span class="hc-path">Reports → Not authenticated attempts</span><p>Calls from IPs that match no customer. Helps find setup mistakes and scanners.</p></div>
+</div>
+
+<h3>What your customers see</h3>
+<p>In the Customer portal, your customers can view their balance, their own CDRs, active calls and call statistics, plus the IP addresses authorised for their account. They only ever see their own data.</p>
+
+<h3 class="hc-gap">Reading quality numbers</h3>
+<ul class="hc-list">
+<li><b>ASR</b> going down on one vendor usually means that route is failing. Move traffic to a backup dialpeer.</li>
+<li><b>ACD</b> that is very short (a few seconds) can mean poor audio quality or false answers.</li>
+<li>Check the <b>disconnect code</b> on failed calls in CDR History. It tells you whether the call failed at your switch, at the vendor, or because of balance or capacity.</li>
+</ul>
+</div></section>
+
+<!-- GLOSSARY -->
+<section class="hc-sec" id="glossary"><div class="wrap hc">
+<span class="eyebrow">Reference</span>
+<h2>Glossary</h2>
+<dl class="hc-gloss">
+<dt>CC</dt><dd>Concurrent calls. How many calls are up at the same moment.</dd>
+<dt>CPS</dt><dd>Calls per second. How many new calls can start each second.</dd>
+<dt>ASR</dt><dd>Answer-seizure ratio. The percentage of calls that are answered.</dd>
+<dt>ACD</dt><dd>Average call duration of answered calls, in minutes.</dd>
+<dt>CDR</dt><dd>Call detail record. One line of data for one call.</dd>
+<dt>Prefix</dt><dd>The first digits of a phone number, used to pick a route and a rate.</dd>
+<dt>Dialpeer</dt><dd>One route to one vendor for one prefix, with your cost.</dd>
+<dt>Destination</dt><dd>One selling price to your customer for one prefix.</dd>
+<dt>LCR</dt><dd>Least-cost routing. Try the cheapest vendor first.</dd>
+</dl>
+</div></section>
+
+<section class="contact" id="cta"><div class="wrap"><div><h2>Need help with a step?</h2><p>Contact Celvesta support and include the time of the call, the numbers dialled and any disconnect code you see.</p></div><a class="btn" href="/contact">Contact support</a></div></section>
+</main>
+<footer><div class="wrap"><span>&copy; <span id="yr">2026</span> Celvesta. All rights reserved.</span><span><a href="/plans">Plans</a> &nbsp; <a href="/help-center">Help Center</a> &nbsp; <a href="/#compliance">Compliance</a> &nbsp; <a href="/faq">FAQ</a> &nbsp; <a href="/about">About</a> &nbsp; <a href="/contact">Contact</a> &nbsp; <a href="/terms">Terms</a> &nbsp; <a href="/privacy">Privacy</a> &nbsp; <a href="/acceptable-use">Acceptable use</a> &nbsp; <a href="/refund-policy">Refunds</a> &nbsp; <a href="/open-source">Open-source licenses</a> &nbsp; <a href="mailto:sales@celvesta.com">sales@celvesta.com</a></span></div></footer>
+<script src="main.js?v=5"></script>
+</body>
+</html>

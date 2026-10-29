@@ -276,3 +276,6 @@ section.legal-sec{padding:64px 0 72px;border-top:0}
 .legal a{text-decoration:underline;text-underline-offset:2px}
 .legal-more{margin-top:44px!important;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
 .fm-legal{margin-top:12px;font-size:.82rem;color:#C9B49A}.fm-legal a{color:#E2B25A}
+
+/* animated particle wave behind hero */
+.hero-wave{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9;-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.25) 40%,#000 62%);mask-image:linear-gradient(90deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.25) 40%,#000 62%)}

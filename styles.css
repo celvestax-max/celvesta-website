@@ -326,3 +326,10 @@ section.legal-sec{padding:64px 0 72px;border-top:0}
 .pt thead th:nth-child(2),.pt thead th:nth-child(4){box-shadow:inset 1px 0 0 rgba(107,66,38,.28),inset -1px 0 0 rgba(107,66,38,.28),inset 0 3px 0 #8A5A36}
 .pt tbody tr:last-child td:nth-child(2),.pt tbody tr:last-child td:nth-child(4),.pt tbody tr:last-child td.hl{box-shadow:inset 1px 0 0 rgba(107,66,38,.28),inset -1px 0 0 rgba(107,66,38,.28),inset 0 -1px 0 rgba(107,66,38,.28)}
 .pt tbody tr:last-child td.hl{box-shadow:inset 1px 0 0 rgba(200,144,46,.45),inset -1px 0 0 rgba(200,144,46,.45),inset 0 -3px 0 #C8902E}
+/* plans page SEO additions */
+.intro h1{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700}
+.intro .plan-intro{margin-top:14px;font-size:1rem}
+.intro .plan-intro a,.cmp-body a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.cmp{padding-top:72px}
+.cmp-body{max-width:46em;margin-top:18px}
+.cmp-body p{color:var(--muted);margin-top:14px}

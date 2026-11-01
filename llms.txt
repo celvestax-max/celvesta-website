@@ -1,0 +1,26 @@
+# Celvesta
+
+> Celvesta is a hosted Class 4 softswitch for wholesale carriers, VoIP resellers, call centers and telecom startups. Each customer gets their own dedicated switch on a private server, branded with their own logo and fully managed by Celvesta: installation, updates, daily backups and monitoring. Plans are flat monthly prices with unlimited minutes, sized by concurrent calls and calls per second.
+
+Key facts:
+- Plans: Starter $149/month (up to 200 concurrent calls, 20 CPS), Business $349/month (up to 500 concurrent calls, 50 CPS), Carrier from $800/month (1,000+ concurrent calls, dedicated bare-metal server). Yearly billing gives 2 months free.
+- Every customer runs on a separate server; servers are never shared between customers.
+- Business and Carrier plans include online top-ups for the operator's own customers (card through the operator's own Stripe account, or USDT on TRC20 and BEP20) and low-balance alerts by email and Telegram.
+- Features include least-cost routing, real-time billing, CDRs and reports, a branded admin panel and customer portal, and STIR/SHAKEN support.
+- Support hours are on US Eastern time. Celvesta never asks for payment by chat; invoices are only sent from billing@celvesta.com.
+
+## Main pages
+
+- [Home](https://celvesta.com/): What Celvesta is, the features of the switch, and how to get started
+- [Plans and pricing](https://celvesta.com/plans): Plan comparison, limits, setup fees and plan FAQ
+- [FAQ](https://celvesta.com/faq): Common questions from carriers, resellers and call centers
+- [Help Center](https://celvesta.com/help-center): Step-by-step setup guides: branding, customers and vendors, routing and rates, CDRs, online top-ups and balance alerts
+- [Contact and demo](https://celvesta.com/contact): Request a demo login
+- [Official contacts](https://celvesta.com/official): The only official Celvesta contact channels and the payment rule
+
+## Policies
+
+- [Terms of Service](https://celvesta.com/terms)
+- [Privacy Policy](https://celvesta.com/privacy)
+- [Refund Policy](https://celvesta.com/refund-policy)
+- [Acceptable Use Policy](https://celvesta.com/acceptable-use)

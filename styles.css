@@ -336,3 +336,7 @@ section.legal-sec{padding:64px 0 72px;border-top:0}
 /* home: eyebrow inside the H1 keeps the same look */
 .hero h1 .eyebrow{display:block;font:500 .8rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#E2B25A;margin-bottom:18px;text-shadow:none}
 .intro p a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.feat p a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.pt thead .val{display:block;font:600 .8rem var(--body);color:#8A5A36;margin:6px 0 2px;line-height:1.4}
+.pt thead th{vertical-align:top;padding-top:40px;position:relative}
+.pt thead th .pop{position:absolute;top:12px;left:20px;margin:0}

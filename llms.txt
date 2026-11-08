@@ -7,6 +7,7 @@ Key facts:
 - Every customer runs on a separate server; servers are never shared between customers.
 - Every plan includes online top-ups for the operator's own customers (card through the operator's own Stripe account, or USDT on TRC20 and BEP20) and low-balance alerts by email and Telegram.
 - Features include least-cost routing, real-time billing, CDRs and reports, a branded admin panel and customer portal, and STIR/SHAKEN support.
+- Every plan includes free onboarding (customers, vendors and routes set up with you) and 2 days of free test traffic before you commit. The one-time setup fee covers installation and branding.
 - Support hours are on US Eastern time. Celvesta never asks for payment by chat; invoices are only sent from billing@celvesta.com.
 
 ## Main pages
@@ -15,8 +16,14 @@ Key facts:
 - [Plans and pricing](https://celvesta.com/plans): Plan comparison, limits, setup fees and plan FAQ
 - [FAQ](https://celvesta.com/faq): Common questions from carriers, resellers and call centers
 - [Help Center](https://celvesta.com/help-center): Step-by-step setup guides: branding, customers and vendors, routing and rates, CDRs, online top-ups and balance alerts
+- [Articles](https://celvesta.com/articles/): Practical guides for VoIP wholesalers and call centers
 - [Contact and demo](https://celvesta.com/contact): Request a demo login
 - [Official contacts](https://celvesta.com/official): The only official Celvesta contact channels and the payment rule
+
+## Articles
+
+- [How to Start a VoIP Wholesale Business in 2026: Lessons From the Field](https://celvesta.com/articles/how-to-start-voip-wholesale-business)
+- [Shared vs Dedicated Softswitch Hosting in 2026: Why Your Switch Goes Down at Peak Hours](https://celvesta.com/articles/shared-vs-dedicated-softswitch-hosting)
 
 ## Policies
 

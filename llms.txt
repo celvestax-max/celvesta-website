@@ -22,6 +22,7 @@ Key facts:
 
 ## Articles
 
+- [Why Your Customers’ Calls Stop at 2am (and How Low-Balance Alerts Prevent It)](https://celvesta.com/articles/low-balance-alerts)
 - [How to Start a VoIP Wholesale Business in 2026: Lessons From the Field](https://celvesta.com/articles/how-to-start-voip-wholesale-business)
 - [Shared vs Dedicated Softswitch Hosting in 2026: Why Your Switch Goes Down at Peak Hours](https://celvesta.com/articles/shared-vs-dedicated-softswitch-hosting)
 
